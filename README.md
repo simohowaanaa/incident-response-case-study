@@ -95,47 +95,22 @@ Pour un premier passage complet, le [guide du jury](GUIDE_DU_JURY.md) donne le v
 
 ## La chaîne d'incident établie
 
-Le schéma ci-dessous raconte **la chaîne retenue par les recoupements techniques**. Il suit les trois actes du jeu et sépare clairement le point encore à confirmer du reste des faits établis.
+Cette vue présente la chaîne sous la forme d'un **parcours de preuves** : chaque étape indique le fait retenu, son effet et les pièces qui le soutiennent. Elle se lit de haut en bas.
 
-```mermaid
-flowchart TD
-    subgraph I[Acte I · Signaux faibles]
-        A0[A-08 · J-42<br/>Compromission possible chez OasisNet<br/>périmètre à confirmer]
-        A1[A-02 + A-10 · J-21 à J-1<br/>Sessions VPN nocturnes anormales<br/>du compte svc_oasisnet]
-    end
+| Étape | Acte | Fait retenu | Effet sur l'incident | Pièces associées |
+| --- | --- | --- | --- | --- |
+| Point à confirmer | I | Le rapport OasisNet décrit une compromission possible de sa console d'infogérance à J-42. | Cette information éclaire l'origine possible du compte partagé, sans établir tout le périmètre côté prestataire. | [A-08](dossier_incident/preuves/36_A08_rapport_preliminaire_OasisNet.md) |
+| 1. Accès anormal | I | `svc_oasisnet` ouvre des sessions VPN nocturnes, sans MFA et hors de son profil habituel. | Le compte prestataire devient le point d'accès anormal central de l'enquête. | [A-02](dossier_incident/preuves/04_A02_VPN_svc_oasisnet_anormal.md) · [A-10](dossier_incident/preuves/13_A10_SIEM_acces_svc_oasisnet.md) |
+| 2. Préparation de la sortie | II | Une règle `OUT-TEMP-443` est créée sur FIN-112, sans journalisation. | Une communication sortante non contrôlée devient possible. | [A-09](dossier_incident/preuves/10_A09_regle_firewall_C2.md) |
+| 3. Transferts sortants | II | FIN-112 puis FILER-RBT transfèrent 117,8 Go sur dix nuits vers la même destination externe. | L'exfiltration est objectivée ; le volume et le contenu exact restent distincts. | [A-03](dossier_incident/preuves/14_A03_proxy_exfiltration_117_8Go.md) |
+| 4. Sabotage de la reprise | II | La rétention est modifiée et les sauvegardes en ligne récentes deviennent inutilisables. | Les options de restauration rapide sont dégradées avant le chiffrement. | [A-05](dossier_incident/preuves/08_A05_sauvegardes_modifiees_indisponibles.md) |
+| 5. Chiffrement MIRAGE | II | `svhost32.exe` s'exécute sur FIN-112 ; Defender est neutralisé, les fichiers sont chiffrés et les mécanismes de récupération supprimés. | FIN-112 est établi comme patient zéro et le rançongiciel se propage. | [A-01](dossier_incident/preuves/02_A01_EDR_FIN-112_MIRAGE.md) · [A-12](dossier_incident/preuves/15_A12_chronologie_EDR_FIN-112.md) |
+| 6. Impact constaté | II | L'inventaire recense 23 serveurs chiffrés sur 40. | ERP, paie, facturation et partages de fichiers deviennent prioritaires. | [A-13](dossier_incident/preuves/12_A13_inventaire_serveurs_impact.md) |
+| 7. Reprise sûre | III | Les points en ligne récents sont suspects ou infectés ; la copie air-gap de Settat est isolée. | La cellule refuse de payer et restaure l'ERP, puis les services clients, par paliers contrôlés. | [A-30](dossier_incident/preuves/35_A30_integrite_sauvegardes_en_ligne.md) · [Décisions de reprise](dossier_incident/decisions/) |
 
-    subgraph II[Acte II · L'ultimatum]
-        B1[A-09 · J-11<br/>Création de la règle OUT-TEMP-443<br/>sans journalisation]
-        B2[A-03 · J-10 à J-1<br/>117,8 Go de transferts sortants<br/>confirmés]
-        B3[A-05 · J-3<br/>Rétention des sauvegardes modifiée<br/>et dépôts indisponibles]
-        B4[A-01 + A-12 · J-1<br/>FIN-112 : exécution, C2,<br/>chiffrement MIRAGE]
-        B5[A-13 · J2<br/>23 serveurs sur 40 chiffrés<br/>et impact métier confirmé]
-    end
+La chaîne principale est donc : **accès anormal via `svc_oasisnet`, préparation d'une sortie, transferts sortants, sabotage des sauvegardes, chiffrement depuis FIN-112, puis restauration hors ligne**.
 
-    subgraph III[Acte III · Reconstruire]
-        C1[A-30 · J3<br/>Points de restauration en ligne<br/>suspects ou infectés]
-        C2[Décision · restauration<br/>depuis l'air-gap de Settat]
-        C3[Décisions · ERP d'abord,<br/>puis reprise client par paliers]
-    end
-
-    A0 -. hypothèse documentée, périmètre ouvert .-> A1
-    A1 --> B1 --> B2 --> B3 --> B4 --> B5
-    B5 --> C1 --> C2 --> C3
-
-    classDef hypothesis fill:#fff4d6,stroke:#c98b00,color:#5d3b00;
-    classDef evidence fill:#e3f5e9,stroke:#238636,color:#173d24;
-    classDef decision fill:#e8f0fe,stroke:#1f6feb,color:#132a53;
-    class A0 hypothesis;
-    class A1,B1,B2,B3,B4,B5,C1 evidence;
-    class C2,C3 decision;
-```
-
-> [!NOTE]
-> La chaîne principale est : **accès anormaux via `svc_oasisnet` → règle de sortie → exfiltration → sabotage des sauvegardes → chiffrement depuis FIN-112 → restauration hors ligne**.
->
-> Le phishing A-11 est bien réel, mais son lien causal avec MIRAGE n'est pas démontré. De même, le volume établi est de **117,8 Go** : les 300 Go revendiqués par SIROCCO ne sont pas confirmés.
-
-La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) relie chaque maillon à sa pièce et précise ce qui reste à confirmer.
+Le phishing A-11 est réel mais son lien causal avec MIRAGE n'est pas démontré. De même, le volume établi est de **117,8 Go** ; les 300 Go revendiqués par SIROCCO ne sont pas confirmés. La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) précise ces limites et relie chaque maillon à sa source.
 
 ## Ce que le dossier établit
 
