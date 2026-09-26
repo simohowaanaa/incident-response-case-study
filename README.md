@@ -99,19 +99,49 @@ Ce dépôt se lit comme un dossier d'incident, pas comme une documentation techn
 
 Pour un premier passage complet, le [guide du jury](GUIDE_DU_JURY.md) donne le vocabulaire, le parcours recommandé et les attentes de lecture.
 
-## ◉ La chaîne d'incident, en langage clair
+## ◉ La chaîne d'incident établie
+
+Le schéma ci-dessous raconte **la chaîne retenue par les recoupements techniques**. Il suit les trois actes du jeu et sépare clairement le point encore à confirmer du reste des faits établis.
 
 ```mermaid
-flowchart LR
-    A[Accès prestataire anormal] --> B[Sortie réseau non contrôlée]
-    B --> C[Transferts sortants confirmés]
-    C --> D[Sauvegardes en ligne dégradées]
-    D --> E[Chiffrement MIRAGE]
-    E --> F[Isolement et investigation]
-    F --> G[Reprise depuis l'air-gap de Settat]
+flowchart TD
+    subgraph I[Acte I · Signaux faibles]
+        A0[A-08 · J-42<br/>Compromission possible chez OasisNet<br/>périmètre à confirmer]
+        A1[A-02 + A-10 · J-21 à J-1<br/>Sessions VPN nocturnes anormales<br/>du compte svc_oasisnet]
+    end
+
+    subgraph II[Acte II · L'ultimatum]
+        B1[A-09 · J-11<br/>Création de la règle OUT-TEMP-443<br/>sans journalisation]
+        B2[A-03 · J-10 à J-1<br/>117,8 Go de transferts sortants<br/>confirmés]
+        B3[A-05 · J-3<br/>Rétention des sauvegardes modifiée<br/>et dépôts indisponibles]
+        B4[A-01 + A-12 · J-1<br/>FIN-112 : exécution, C2,<br/>chiffrement MIRAGE]
+        B5[A-13 · J2<br/>23 serveurs sur 40 chiffrés<br/>et impact métier confirmé]
+    end
+
+    subgraph III[Acte III · Reconstruire]
+        C1[A-30 · J3<br/>Points de restauration en ligne<br/>suspects ou infectés]
+        C2[Décision · restauration<br/>depuis l'air-gap de Settat]
+        C3[Décisions · ERP d'abord,<br/>puis reprise client par paliers]
+    end
+
+    A0 -. hypothèse documentée, périmètre ouvert .-> A1
+    A1 --> B1 --> B2 --> B3 --> B4 --> B5
+    B5 --> C1 --> C2 --> C3
+
+    classDef hypothesis fill:#fff4d6,stroke:#c98b00,color:#5d3b00;
+    classDef evidence fill:#e3f5e9,stroke:#238636,color:#173d24;
+    classDef decision fill:#e8f0fe,stroke:#1f6feb,color:#132a53;
+    class A0 hypothesis;
+    class A1,B1,B2,B3,B4,B5,C1 evidence;
+    class C2,C3 decision;
 ```
 
-La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) relie chacune de ces étapes aux pièces correspondantes et explicite les limites de l'analyse.
+> [!NOTE]
+> La chaîne principale est : **accès anormaux via `svc_oasisnet` → règle de sortie → exfiltration → sabotage des sauvegardes → chiffrement depuis FIN-112 → restauration hors ligne**.
+>
+> Le phishing A-11 est bien réel, mais son lien causal avec MIRAGE n'est pas démontré. De même, le volume établi est de **117,8 Go** : les 300 Go revendiqués par SIROCCO ne sont pas confirmés.
+
+La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) relie chaque maillon à sa pièce et précise ce qui reste à confirmer.
 
 ## ✓ Ce que le dossier établit
 
