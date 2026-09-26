@@ -21,6 +21,44 @@
 
 ---
 
+## 🎯 Qu'est-ce que ce projet ?
+
+Ce dépôt est la restitution d'un **jeu sérieux de simulation de crise cyber**, nommé **KASBAH**. Vous incarnez une cellule de crise d'AtlasGrid confrontée au rançongiciel fictif **MIRAGE**. Au fil de messages, de journaux techniques et de décisions à prendre, l'objectif n'est pas seulement de « trouver le coupable » : il faut apprendre à **raisonner avec des éléments incomplets**, protéger l'entreprise et justifier chaque choix.
+
+Le challenge consiste à :
+
+- distinguer une **preuve** d'une **fausse piste** ou d'un simple **bruit** ;
+- reconstituer une chronologie défendable, pièce par pièce ;
+- arbitrer sous pression : isolement, communication, notification, sauvegardes, rançon et reprise ;
+- produire des livrables compréhensibles par une direction, un client, un assureur ou un jury.
+
+> **Ce que démontre ce dépôt :** une méthode de réponse à incident qui associe analyse technique, continuité d'activité, communication de crise et gouvernance.
+
+## 🎬 Les trois actes du jeu
+
+| Acte | Ce qui se joue | Ce que la cellule doit accomplir | Accès direct |
+| --- | --- | --- | --- |
+| **I · Signaux faibles** | Alertes isolées, courriel suspect, plaintes d'utilisateurs : rien n'est encore certain. | Cartographier les actifs, qualifier les premiers signaux et séparer le fait du bruit. | [Explorer l'acte I](dossier_incident/chronologie/GALERIE_CAPTURES.md#1-acte-i--signaux-faibles-et-premières-qualifications) |
+| **II · L'ultimatum** | Les serveurs sont chiffrés, une rançon est demandée et la pression monte. | Mesurer l'impact, établir la chaîne technique et décider sans céder aux rumeurs ni à la précipitation. | [Explorer l'acte II](dossier_incident/chronologie/GALERIE_CAPTURES.md#2-acte-ii--ransomware-propagation-et-reconstitution-technique) |
+| **III · Reconstruire** | L'incident est contenu ; il faut remettre l'activité sur pied et rendre des comptes. | Choisir une sauvegarde saine, restaurer par priorités, rouvrir progressivement et préparer le plan 30/60/90 jours. | [Explorer l'acte III](dossier_incident/chronologie/GALERIE_CAPTURES.md#5-acte-iii--reconstruction-et-reprise) |
+
+## 🧾 Résumé du scénario
+
+Un compte prestataire partagé, `svc_oasisnet`, est utilisé de nuit en dehors de son profil habituel. Une règle réseau temporaire est créée, puis des données sont transférées vers une destination externe. Les sauvegardes en ligne sont ensuite dégradées avant que le poste FIN-112 ne serve de point de départ au chiffrement MIRAGE. La cellule isole l'environnement, rejette la rançon, choisit une copie air-gap à Settat et rétablit d'abord le cœur ERP avant de rouvrir les services clients par paliers.
+
+La [mémoire de crise](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) raconte ce déroulé dans son intégralité, avec les faits confirmés et les limites à ne pas dépasser.
+
+## 🗺️ Navigation rapide
+
+| Pour… | Ouvrir… |
+| --- | --- |
+| Découvrir le scénario sans jargon | [Mémoire de crise](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) |
+| Suivre les événements dans l'ordre | [Chronologie complète](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) |
+| Examiner chaque capture et qualification | [Galerie des captures](dossier_incident/chronologie/GALERIE_CAPTURES.md) |
+| Comprendre ce qui a été retenu ou écarté | [Preuves, fausses pistes et bruits](dossier_incident/triage/) |
+| Lire les arbitrages de la cellule | [Registre des décisions](dossier_incident/decisions/) |
+| Présenter le travail à un jury ou une direction | [Livrables PDF](livrables_jury/README.md) |
+
 ## ◈ L'incident en bref
 
 | Ce qui s'est passé | Ce que la cellule a fait |
