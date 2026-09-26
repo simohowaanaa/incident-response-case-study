@@ -1,5 +1,11 @@
 <div align="center">
 
+<p>
+  <img src="assets/logos/emsi.png" alt="EMSI" height="56">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/cybersup.png" alt="CyberSup" height="56">
+</p>
+
 # Réponse à incident cyber — AtlasGrid
 
 ### Étude de cas de gestion de crise : enquêter, décider, restaurer
