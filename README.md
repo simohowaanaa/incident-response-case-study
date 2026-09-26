@@ -1,16 +1,10 @@
 <div align="center">
 
-<p>
-  <img src="assets/logos/emsi.png" alt="EMSI" height="56">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/logos/cybersup.png" alt="CyberSup" height="56">
-</p>
+<img src="assets/logos/organisateurs.png" alt="EMSI et CyberSup" width="640">
 
-# Réponse à incident cyber — AtlasGrid
+<br><br>
 
-### Étude de cas de gestion de crise : enquêter, décider, restaurer
-
-**Exercice KASBAH · Scénario fictif MIRAGE · Dossier de réponse à incident**
+<img src="assets/branding/atlasgrid-hero.svg" alt="Réponse à incident cyber — AtlasGrid. Étude de cas de gestion de crise, scénario fictif MIRAGE." width="100%">
 
 [Commencer la lecture](#-commencer-ici) · [Voir la chronologie](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) · [Consulter les livrables](livrables_jury/README.md)
 
