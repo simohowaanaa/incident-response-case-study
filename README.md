@@ -1,82 +1,128 @@
 <div align="center">
 
-<p>
-  <img src="assets/logos/organisateurs.png" alt="EMSI et CyberSup, organisateurs de l'exercice" width="640">
-</p>
+<img src="assets/logos/organisateurs.png" alt="EMSI et CyberSup, organisateurs de l'exercice" width="580">
 
-# AtlasGrid — dossier de gestion de crise MIRAGE
+# Réponse à incident cyber — AtlasGrid
 
-**Dossier d'incident fictif · Exercice KASBAH · AtlasGrid**
+### Étude de cas de gestion de crise : enquêter, décider, restaurer
 
-*Exercice organisé par EMSI et CyberSup.*
+**Exercice KASBAH · Scénario fictif MIRAGE · Dossier de réponse à incident**
 
-[Guide du jury](GUIDE_DU_JURY.md) · [Comprendre l'incident](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) · [Livrables PDF](livrables_jury/README.md)
+[![Parcours guidé](https://img.shields.io/badge/parcours-guid%C3%A9-pour%20lecteur%20non%20technique-087f5b?style=flat-square)](GUIDE_DU_JURY.md)
+[![Décisions](https://img.shields.io/badge/d%C3%A9cisions-12%2F12%20trac%C3%A9es-1d4ed8?style=flat-square)](dossier_incident/decisions/)
+[![Périmètre](https://img.shields.io/badge/p%C3%A9rim%C3%A8tre-incident%20fictif-9a3412?style=flat-square)](dossier_incident/README.md)
+
+[Commencer la lecture](#-commencer-ici) · [Voir la chronologie](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) · [Consulter les livrables](livrables_jury/README.md)
 
 </div>
 
-> **Cadre pédagogique.** Ce dépôt reconstitue un incident cyber fictif. Il ne contient aucune donnée réelle et doit être lu comme un dossier de formation.
+> [!IMPORTANT]
+> **Dossier pédagogique fictif.** AtlasGrid, MIRAGE, SIROCCO et les événements décrits sont imaginaires. Ce dépôt présente une démarche de gestion de crise cyber : qualification des signaux, investigation, décision, continuité d'activité et reprise contrôlée.
 
-## Commencer ici
+---
 
-Ce dépôt est volontairement organisé pour un lecteur non technique.
+## ◈ L'incident en bref
 
-1. Lire le [guide du jury](GUIDE_DU_JURY.md) : il explique les mots employés et le parcours recommandé.
-2. Lire le [mémoire d'incident](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) : la version courte de ce qui s'est passé.
-3. Suivre la [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) : chaque étape renvoie à une pièce.
-4. Consulter les [livrables prêts à partager](livrables_jury/README.md) : chronologie, containment, risques, rapport de direction et plan de remédiation.
+| Ce qui s'est passé | Ce que la cellule a fait |
+| --- | --- |
+| Le rançongiciel **MIRAGE** a chiffré 23 des 40 serveurs d'AtlasGrid, dont l'ERP, la paie, la facturation et les partages de fichiers. | La cellule a isolé le périmètre, préservé les traces et recherché la cause sans confondre les faits avec les rumeurs. |
+| Un compte prestataire utilisé hors de son profil habituel, une sortie réseau anormale et des sauvegardes en ligne dégradées ont formé la chaîne d'incident. | Elle a refusé de payer, choisi la copie déconnectée de Settat et rétabli l'ERP avant les autres services. |
+| Des alertes concurrentes ont compliqué l'analyse. | Chaque élément a été classé comme **preuve**, **fausse piste** ou **bruit**, avec une justification vérifiable. |
 
-## En une minute
+<div align="center">
 
-| Sujet | Ce qui est établi |
-|---|---|
-| Incident | Le rançongiciel **MIRAGE** a touché l'environnement AtlasGrid. |
-| Impact | **23 des 40 serveurs** sont chiffrés, dont l'ERP, la paie, la facturation et les partages de fichiers. |
-| Données | **117,8 Go** de transferts sortants sont confirmés ; l'affirmation de 300 Go de SIROCCO n'est pas confirmée. |
-| Accès anormal | Le compte prestataire partagé `svc_oasisnet` a été utilisé la nuit, hors de son profil habituel. |
-| Reprise | La cellule refuse de payer, restaure depuis l'air-gap de Settat, remet l'ERP en premier puis rouvre les services clients par paliers. |
+**Résultat : 12 décisions majeures tracées · reprise encadrée par paliers · dossier conçu pour être auditable**
 
-> **Point de prudence.** Le rapport OasisNet étaye une compromission amont possible, mais son périmètre exact reste à confirmer. SIROCCO a publié un échantillon de données, sans qu'une identité ou une localisation du groupe puisse être démontrée par le dossier.
+</div>
 
-## La chaîne d'incident, en langage simple
+## ✦ Commencer ici
 
-1. Un accès prestataire (`svc_oasisnet`) est utilisé de façon anormale.
-2. Une règle réseau temporaire ouvre une sortie non contrôlée.
-3. Des données sont transférées vers une infrastructure externe.
-4. Les mécanismes de sauvegarde en ligne sont dégradés avant le chiffrement.
-5. MIRAGE se lance sur FIN-112, chiffre des systèmes et détruit des possibilités de restauration locale.
-6. La cellule isole, communique, refuse la rançon, puis redémarre depuis une copie hors ligne vérifiée.
+Ce dépôt se lit comme un dossier d'incident, pas comme une documentation technique. Choisissez votre point d'entrée :
 
-La version complète, sourcée et nuancée est disponible dans la [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md).
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <h3>① Découvrir</h3>
+      <p>Pour comprendre l'histoire sans jargon.</p>
+      <a href="dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md"><strong>Lire le récit de l'incident →</strong></a>
+    </td>
+    <td width="33%" valign="top">
+      <h3>② Vérifier</h3>
+      <p>Pour suivre les faits et leurs sources.</p>
+      <a href="dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md"><strong>Ouvrir la chronologie sourcée →</strong></a>
+    </td>
+    <td width="33%" valign="top">
+      <h3>③ Restituer</h3>
+      <p>Pour préparer un jury ou une direction.</p>
+      <a href="livrables_jury/README.md"><strong>Accéder aux livrables PDF →</strong></a>
+    </td>
+  </tr>
+</table>
 
-## Où trouver l'information
+Pour un premier passage complet, le [guide du jury](GUIDE_DU_JURY.md) donne le vocabulaire, le parcours recommandé et les attentes de lecture.
 
-| Si vous cherchez… | Ouvrez… | Vous y trouverez… |
-|---|---|---|
-| Le récit court de l'incident | [Chronologie](dossier_incident/chronologie/) | Mémoire, chronologie technique, chronologie complète et galerie de captures. |
-| Les faits établis | [Preuves](dossier_incident/preuves/) | 15 fiches de preuve, les captures associées et les limites de chaque constat. |
-| Les éléments écartés | [Triage](dossier_incident/triage/) | Fausses pistes et bruits, avec la raison de leur classement. |
-| Les choix de la cellule | [Décisions](dossier_incident/decisions/) | 12 décisions documentées : confinement, communication, assurance, reprise et retour des clients. |
-| Les dépendances du SI | [Cartographie](dossier_incident/cartographie/) | Zones, actifs critiques et dépendances utiles à la reprise. |
-| Les rôles de la cellule | [Pôles](dossier_incident/poles/) | Notes de travail des six pôles. |
-| Les documents de restitution | [Livrables jury](livrables_jury/) | PDF classés par usage pour la présentation et la direction. |
+## ◉ La chaîne d'incident, en langage clair
 
-## Décisions finales de reprise
+```mermaid
+flowchart LR
+    A[Accès prestataire anormal] --> B[Sortie réseau non contrôlée]
+    B --> C[Transferts sortants confirmés]
+    C --> D[Sauvegardes en ligne dégradées]
+    D --> E[Chiffrement MIRAGE]
+    E --> F[Isolement et investigation]
+    F --> G[Reprise depuis l'air-gap de Settat]
+```
 
-| Décision | Justification | Référence |
-|---|---|---|
-| Ne pas payer | Aucun déchiffrement ni effacement des données n'est garanti ; une copie indépendante existe. | [Décision 09](dossier_incident/decisions/09_ne_pas_payer_reprise_independante.md) |
-| Restaurer depuis Settat | Les sauvegardes en ligne récentes sont suspectes ou infectées ; l'air-gap est déconnecté. | [Décision 12](dossier_incident/decisions/12_restauration_airgap_Settat.md) |
-| Prioriser l'ERP | La paie et la facturation dépendent du socle ERP. | [Décision 11](dossier_incident/decisions/11_priorite_restauration_ERP.md) |
-| Rouvrir par paliers | Chaque étape est validée avant d'étendre la remise en service. | [Décision 13](dossier_incident/decisions/13_reprise_progressive_clients.md) |
+La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) relie chacune de ces étapes aux pièces correspondantes et explicite les limites de l'analyse.
 
-## Règle de lecture du dossier
+## ✓ Ce que le dossier établit
 
-Chaque affirmation renvoie à une pièce. Les statuts ne se confondent pas : une **preuve** établit un fait, une **fausse piste** a été investiguée puis réfutée, et un **bruit** est un signal réel mais sans lien démontré avec MIRAGE.
+| Sujet | Constat étayé | À retenir |
+| --- | --- | --- |
+| **Accès initial** | `svc_oasisnet` est utilisé de nuit, hors de son fonctionnement attendu. | Une compromission liée au prestataire est plausible ; l'étendue exacte reste à confirmer. |
+| **Exfiltration** | Le proxy confirme **117,8 Go** de transferts sortants. | La revendication de 300 Go de SIROCCO n'est pas démontrée. |
+| **Impact** | L'inventaire SCCM constate 23 serveurs chiffrés. | Les activités ERP, paie, facturation et fichiers sont touchées. |
+| **Sauvegardes** | Les points en ligne récents sont suspects ou infectés. | La copie air-gap de Settat est la base de restauration sûre. |
+| **Reprise** | L'ERP est restauré avant la paie et la facturation. | Les services clients sont rouverts progressivement, avec contrôles à chaque palier. |
+
+## ⚖️ Du signal à la décision
+
+| Catégorie | Rôle dans l'enquête | Accès direct |
+| --- | --- | --- |
+| 🟢 **Preuves** | Éléments qui établissent un fait de la chaîne d'incident. | [Consulter les 15 preuves](dossier_incident/preuves/) |
+| 🟠 **Fausses pistes** | Hypothèses investiguées puis réfutées, pour rendre le raisonnement transparent. | [Voir les pistes écartées](dossier_incident/triage/fausses_pistes/) |
+| ⚪ **Bruits** | Signaux réels, mais sans lien démontré avec MIRAGE. | [Voir les bruits qualifiés](dossier_incident/triage/bruits/) |
+| 🔵 **Décisions** | Arbitrages de la cellule, leur justification et leur conséquence. | [Lire les 12 décisions](dossier_incident/decisions/) |
+
+> Une conclusion sans source n'est pas une preuve. Chaque fiche indique ce que le document permet d'affirmer — et ce qu'il ne permet pas d'affirmer.
+
+## 🧭 Retrouver rapidement l'information
+
+| Vous voulez… | Consultez… |
+| --- | --- |
+| Comprendre le scénario et le périmètre | [Dossier incident](dossier_incident/README.md) |
+| Suivre l'ordre des événements | [Chronologie](dossier_incident/chronologie/) |
+| Examiner les éléments techniques | [Preuves et captures](dossier_incident/preuves/) |
+| Comprendre les choix de crise | [Décisions de la cellule](dossier_incident/decisions/) |
+| Identifier les actifs et dépendances | [Cartographie](dossier_incident/cartographie/) |
+| Explorer les travaux par métier | [Pôles de la cellule](dossier_incident/poles/) |
+| Télécharger les documents prêts à présenter | [Livrables jury](livrables_jury/) |
+
+## 🛡️ Décisions de reprise retenues
+
+| Décision | Pourquoi | Résultat recherché |
+| --- | --- | --- |
+| **Ne pas payer** | Un paiement ne garantit ni le déchiffrement, ni l'effacement des données exfiltrées. | Conserver une reprise indépendante et défendable. |
+| **Restaurer depuis Settat** | Les sauvegardes en ligne récentes contiennent des indicateurs MIRAGE. | Éviter de réintroduire le rançongiciel. |
+| **Prioriser l'ERP** | La paie et la facturation dépendent de ce socle commun. | Débloquer plusieurs services par une restauration cohérente. |
+| **Rouvrir par paliers** | Chaque service doit être vérifié avant extension. | Reprendre sans transformer la restauration en nouvel incident. |
+
+Les choix, leurs effets et leurs références sont détaillés dans le [registre des décisions](dossier_incident/decisions/README.md).
 
 ---
 
 <div align="center">
 
-**AtlasGrid · MIRAGE · Exercice KASBAH**
+<sub>Conçu dans le cadre de l'exercice KASBAH organisé par EMSI et CyberSup · AtlasGrid est un cas fictif à vocation pédagogique.</sub>
 
 </div>
