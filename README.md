@@ -1,16 +1,10 @@
 <div align="center">
 
-<img src="assets/logos/organisateurs.png" alt="EMSI et CyberSup, organisateurs de l'exercice" width="580">
-
 # Réponse à incident cyber — AtlasGrid
 
 ### Étude de cas de gestion de crise : enquêter, décider, restaurer
 
 **Exercice KASBAH · Scénario fictif MIRAGE · Dossier de réponse à incident**
-
-[![Parcours guidé](https://img.shields.io/badge/parcours-guid%C3%A9-pour%20lecteur%20non%20technique-087f5b?style=flat-square)](GUIDE_DU_JURY.md)
-[![Décisions](https://img.shields.io/badge/d%C3%A9cisions-12%2F12%20trac%C3%A9es-1d4ed8?style=flat-square)](dossier_incident/decisions/)
-[![Périmètre](https://img.shields.io/badge/p%C3%A9rim%C3%A8tre-incident%20fictif-9a3412?style=flat-square)](dossier_incident/README.md)
 
 [Commencer la lecture](#-commencer-ici) · [Voir la chronologie](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) · [Consulter les livrables](livrables_jury/README.md)
 
@@ -21,7 +15,7 @@
 
 ---
 
-## 🎯 Qu'est-ce que ce projet ?
+## Qu'est-ce que ce projet ?
 
 Ce dépôt est la restitution d'un **jeu sérieux de simulation de crise cyber**, nommé **KASBAH**. Vous incarnez une cellule de crise d'AtlasGrid confrontée au rançongiciel fictif **MIRAGE**. Au fil de messages, de journaux techniques et de décisions à prendre, l'objectif n'est pas seulement de « trouver le coupable » : il faut apprendre à **raisonner avec des éléments incomplets**, protéger l'entreprise et justifier chaque choix.
 
@@ -34,7 +28,7 @@ Le challenge consiste à :
 
 > **Ce que démontre ce dépôt :** une méthode de réponse à incident qui associe analyse technique, continuité d'activité, communication de crise et gouvernance.
 
-## 🎬 Les trois actes du jeu
+## Les trois actes du jeu
 
 | Acte | Ce qui se joue | Ce que la cellule doit accomplir | Accès direct |
 | --- | --- | --- | --- |
@@ -42,13 +36,13 @@ Le challenge consiste à :
 | **II · L'ultimatum** | Les serveurs sont chiffrés, une rançon est demandée et la pression monte. | Mesurer l'impact, établir la chaîne technique et décider sans céder aux rumeurs ni à la précipitation. | [Explorer l'acte II](dossier_incident/chronologie/GALERIE_CAPTURES.md#2-acte-ii--ransomware-propagation-et-reconstitution-technique) |
 | **III · Reconstruire** | L'incident est contenu ; il faut remettre l'activité sur pied et rendre des comptes. | Choisir une sauvegarde saine, restaurer par priorités, rouvrir progressivement et préparer le plan 30/60/90 jours. | [Explorer l'acte III](dossier_incident/chronologie/GALERIE_CAPTURES.md#5-acte-iii--reconstruction-et-reprise) |
 
-## 🧾 Résumé du scénario
+## Résumé du scénario
 
 Un compte prestataire partagé, `svc_oasisnet`, est utilisé de nuit en dehors de son profil habituel. Une règle réseau temporaire est créée, puis des données sont transférées vers une destination externe. Les sauvegardes en ligne sont ensuite dégradées avant que le poste FIN-112 ne serve de point de départ au chiffrement MIRAGE. La cellule isole l'environnement, rejette la rançon, choisit une copie air-gap à Settat et rétablit d'abord le cœur ERP avant de rouvrir les services clients par paliers.
 
 La [mémoire de crise](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) raconte ce déroulé dans son intégralité, avec les faits confirmés et les limites à ne pas dépasser.
 
-## 🗺️ Navigation rapide
+## Navigation rapide
 
 | Pour… | Ouvrir… |
 | --- | --- |
@@ -59,7 +53,7 @@ La [mémoire de crise](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) 
 | Lire les arbitrages de la cellule | [Registre des décisions](dossier_incident/decisions/) |
 | Présenter le travail à un jury ou une direction | [Livrables PDF](livrables_jury/README.md) |
 
-## ◈ L'incident en bref
+## L'incident en bref
 
 | Ce qui s'est passé | Ce que la cellule a fait |
 | --- | --- |
@@ -73,33 +67,33 @@ La [mémoire de crise](dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md) 
 
 </div>
 
-## ✦ Commencer ici
+## Commencer ici
 
 Ce dépôt se lit comme un dossier d'incident, pas comme une documentation technique. Choisissez votre point d'entrée :
 
 <table>
   <tr>
     <td width="33%" valign="top">
-      <h3>① Découvrir</h3>
+      <h3>1. Découvrir</h3>
       <p>Pour comprendre l'histoire sans jargon.</p>
-      <a href="dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md"><strong>Lire le récit de l'incident →</strong></a>
+      <a href="dossier_incident/chronologie/MEMOIRE_INCIDENT_MIRAGE.md"><strong>Lire le récit de l'incident</strong></a>
     </td>
     <td width="33%" valign="top">
-      <h3>② Vérifier</h3>
+      <h3>2. Vérifier</h3>
       <p>Pour suivre les faits et leurs sources.</p>
-      <a href="dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md"><strong>Ouvrir la chronologie sourcée →</strong></a>
+      <a href="dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md"><strong>Ouvrir la chronologie sourcée</strong></a>
     </td>
     <td width="33%" valign="top">
-      <h3>③ Restituer</h3>
+      <h3>3. Restituer</h3>
       <p>Pour préparer un jury ou une direction.</p>
-      <a href="livrables_jury/README.md"><strong>Accéder aux livrables PDF →</strong></a>
+      <a href="livrables_jury/README.md"><strong>Accéder aux livrables PDF</strong></a>
     </td>
   </tr>
 </table>
 
 Pour un premier passage complet, le [guide du jury](GUIDE_DU_JURY.md) donne le vocabulaire, le parcours recommandé et les attentes de lecture.
 
-## ◉ La chaîne d'incident établie
+## La chaîne d'incident établie
 
 Le schéma ci-dessous raconte **la chaîne retenue par les recoupements techniques**. Il suit les trois actes du jeu et sépare clairement le point encore à confirmer du reste des faits établis.
 
@@ -143,7 +137,7 @@ flowchart TD
 
 La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMPLETE.md) relie chaque maillon à sa pièce et précise ce qui reste à confirmer.
 
-## ✓ Ce que le dossier établit
+## Ce que le dossier établit
 
 | Sujet | Constat étayé | À retenir |
 | --- | --- | --- |
@@ -153,18 +147,18 @@ La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMP
 | **Sauvegardes** | Les points en ligne récents sont suspects ou infectés. | La copie air-gap de Settat est la base de restauration sûre. |
 | **Reprise** | L'ERP est restauré avant la paie et la facturation. | Les services clients sont rouverts progressivement, avec contrôles à chaque palier. |
 
-## ⚖️ Du signal à la décision
+## Du signal à la décision
 
 | Catégorie | Rôle dans l'enquête | Accès direct |
 | --- | --- | --- |
-| 🟢 **Preuves** | Éléments qui établissent un fait de la chaîne d'incident. | [Consulter les 15 preuves](dossier_incident/preuves/) |
-| 🟠 **Fausses pistes** | Hypothèses investiguées puis réfutées, pour rendre le raisonnement transparent. | [Voir les pistes écartées](dossier_incident/triage/fausses_pistes/) |
-| ⚪ **Bruits** | Signaux réels, mais sans lien démontré avec MIRAGE. | [Voir les bruits qualifiés](dossier_incident/triage/bruits/) |
-| 🔵 **Décisions** | Arbitrages de la cellule, leur justification et leur conséquence. | [Lire les 12 décisions](dossier_incident/decisions/) |
+| **Preuves** | Éléments qui établissent un fait de la chaîne d'incident. | [Consulter les 15 preuves](dossier_incident/preuves/) |
+| **Fausses pistes** | Hypothèses investiguées puis réfutées, pour rendre le raisonnement transparent. | [Voir les pistes écartées](dossier_incident/triage/fausses_pistes/) |
+| **Bruits** | Signaux réels, mais sans lien démontré avec MIRAGE. | [Voir les bruits qualifiés](dossier_incident/triage/bruits/) |
+| **Décisions** | Arbitrages de la cellule, leur justification et leur conséquence. | [Lire les 12 décisions](dossier_incident/decisions/) |
 
 > Une conclusion sans source n'est pas une preuve. Chaque fiche indique ce que le document permet d'affirmer — et ce qu'il ne permet pas d'affirmer.
 
-## 🧭 Retrouver rapidement l'information
+## Retrouver rapidement l'information
 
 | Vous voulez… | Consultez… |
 | --- | --- |
@@ -176,7 +170,7 @@ La [chronologie consolidée](dossier_incident/chronologie/FICHE_CHRONOLOGIE_COMP
 | Explorer les travaux par métier | [Pôles de la cellule](dossier_incident/poles/) |
 | Télécharger les documents prêts à présenter | [Livrables jury](livrables_jury/) |
 
-## 🛡️ Décisions de reprise retenues
+## Décisions de reprise retenues
 
 | Décision | Pourquoi | Résultat recherché |
 | --- | --- | --- |
